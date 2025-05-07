@@ -13,6 +13,14 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+
+  # Perform garbage collection weekly to maintain low disk usage
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
+  };
 
   networking.hostName = "nix-desktop"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -146,7 +154,7 @@
   # https://nixos.wiki/wiki/Neovim
   programs.neovim = {
     enable = true;
-    defaultEditor = true;
+    # defaultEditor = true;
   };
 
   # List packages installed in system profile. To search, run:
@@ -185,6 +193,8 @@
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
+
+
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

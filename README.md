@@ -14,7 +14,7 @@ Similar to the instructions from [nixos-and-flakes](https://nixos-and-flakes.thi
 
 ```
 sudo mv /etc/nixos /etc/nixos-bak
-sudo ln -s ~/.dotfilkes/nixos /etc/nixos
+sudo ln -s ~/.dotfiles/nixos /etc/nixos
 
 sudo nixos-rebuild switch
 ```
