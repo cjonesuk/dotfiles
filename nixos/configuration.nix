@@ -132,6 +132,7 @@
     packages = with pkgs; [
        vscode
        obsidian
+       oh-my-zsh
     ];
   };
 
