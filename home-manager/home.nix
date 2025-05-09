@@ -3,7 +3,7 @@
 
 let
   # Path to the directory where your actual dotfiles are stored
-  dotfilesDir = ../config;
+  dotfilesDir = "${config.home.homeDirectory}/.dotfiles/config";
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -20,14 +20,15 @@ in
   # changes in each release.
   home.stateVersion = "23.05"; # Adjust to your Home Manager version (e.g., "23.11", "24.05")
 
-  # Packages needed for Zsh, Oh My Zsh, Powerlevel10k, and common plugins
+  # Packages
   home.packages = with pkgs; [
     oh-my-zsh
     zsh-powerlevel10k
     fzf
     zoxide
     nerd-fonts.meslo-lg # Use the identified Nerd Font attribute
-    # Add other non-font packages here if any
+    vscode
+    obsidian
   ];
 
   # Nicely reload systemd units when changing configurations.
@@ -59,9 +60,9 @@ in
     # Oh My Zsh and Powerlevel10k configuration will be handled by your symlinked .zshrc
     # and .p10k.zsh files.
     # The oh-my-zsh package installed via home.packages provides the framework.
-    sessionVariables = {
-      ZSH = "${pkgs.oh-my-zsh}"; # Explicitly set $ZSH to the OMZ Nix store path
-    };
+    envExtra = ''
+      export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh" # Point to the subdirectory
+    '';
   };
 
   programs.git = {

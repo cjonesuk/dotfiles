@@ -20,14 +20,31 @@ compinit
 # Home Manager (when installing the oh-my-zsh package) typically sets the $ZSH
 # environment variable to point to the correct path in the Nix store.
 # This line provides a fallback if $ZSH isn't set, which is useful for non-Nix systems.
-export ZSH="${ZSH:-$HOME/.oh-my-zsh}"
+# export ZSH="${ZSH:-$HOME/.oh-my-zsh}" # <--- Commenting out the original line
+
+# echo "[.zshrc DEBUG] ZSH at top of .zshrc: '$ZSH'" # Removing debug echo
+
+# New conditional ZSH setting: <--- This entire block should still be commented out from the previous step
+# if [[ -z "$ZSH" || ! "$ZSH" == /nix/store/* ]]; then
+#   echo "[.zshrc] DEBUG: Condition (ZSH empty or not /nix/store/*) is TRUE."
+#   echo "[.zshrc] DEBUG: ZSH before override: '$ZSH'"
+#   export ZSH="$HOME/.oh-my-zsh"
+#   echo "[.zshrc] DEBUG: ZSH after override: '$ZSH'"
+# else
+#   echo "[.zshrc] DEBUG: Condition (ZSH empty or not /nix/store/*) is FALSE."
+#   echo "[.zshrc] DEBUG: ZSH not overridden: '$ZSH'"
+# fi
+# Ensure ZSH is exported (it might have been set by zshenv but not exported,
+# though `export` in initExtra should handle that. This is just for safety).
+# export ZSH # Temporarily commented out
+# echo "[.zshrc DEBUG] ZSH before sourcing OMZ: '$ZSH'" # Removing debug echo
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # We are setting it to Powerlevel10k
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k" # Commenting out to let P10k take over via direct sourcing
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -125,10 +142,15 @@ fi
 # This will be created by `p10k configure` and symlinked by Home Manager
 # from your config/zsh/.p10k.zsh file.
 # It's important to source it *after* Oh My Zsh and ZSH_THEME is set.
+echo "[.zshrc DEBUG] Attempting to source Powerlevel10k config..."
 if [[ -f ~/.p10k.zsh ]]; then
+  echo "[.zshrc DEBUG] Sourcing ~/.p10k.zsh"
   source ~/.p10k.zsh
 elif [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh" ]]; then # Check standard XDG path too
-    source "${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh"
+  echo "[.zshrc DEBUG] Sourcing ${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh"
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh"
+else
+  echo "[.zshrc DEBUG] No .p10k.zsh found to source."
 fi
 
 # Example for fzf configuration (if you use the fzf plugin)
