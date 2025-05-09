@@ -3,7 +3,8 @@
 
 let
   # Path to the directory where your actual dotfiles are stored
-  dotfilesDir = "${config.home.homeDirectory}/.dotfiles/config";
+  #dotfilesDir = "${config.home.homeDirectory}/.dotfiles/config";
+  dotfilesDir = ../config;
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -18,7 +19,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.05"; # Adjust to your Home Manager version (e.g., "23.11", "24.05")
+  home.stateVersion = "24.11"; # Updated from "23.05"
 
   # Packages
   home.packages = with pkgs; [
