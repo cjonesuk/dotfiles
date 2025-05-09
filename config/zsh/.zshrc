@@ -142,13 +142,12 @@ fi
 # This will be created by `p10k configure` and symlinked by Home Manager
 # from your config/zsh/.p10k.zsh file.
 # It's important to source it *after* Oh My Zsh and ZSH_THEME is set.
-echo "[.zshrc DEBUG] Attempting to source Powerlevel10k config..."
 if [[ -f ~/.p10k.zsh ]]; then
   echo "[.zshrc DEBUG] Sourcing ~/.p10k.zsh"
   source ~/.p10k.zsh
-elif [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh" ]]; then # Check standard XDG path too
-  echo "[.zshrc DEBUG] Sourcing ${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh"
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/p10k/p10k.zsh"
+elif [[ -f "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme" ]] then
+  echo "[.zshrc DEBUG] Sourceing Powerlevel10k from $POWERLEVEL10K_PATH"
+  source "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme"
 else
   echo "[.zshrc DEBUG] No .p10k.zsh found to source."
 fi

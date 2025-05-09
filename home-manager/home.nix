@@ -63,6 +63,7 @@ in
     # The oh-my-zsh package installed via home.packages provides the framework.
     envExtra = ''
       export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh" # Point to the subdirectory
+      export POWERLEVEL10K_PATH="${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k" # Point to the subdirectory
     '';
   };
 
