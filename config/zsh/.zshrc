@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -142,12 +149,15 @@ fi
 # This will be created by `p10k configure` and symlinked by Home Manager
 # from your config/zsh/.p10k.zsh file.
 # It's important to source it *after* Oh My Zsh and ZSH_THEME is set.
-if [[ -f ~/.p10k.zsh ]]; then
-  echo "[.zshrc DEBUG] Sourcing ~/.p10k.zsh"
-  source ~/.p10k.zsh
-elif [[ -f "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme" ]] then
-  echo "[.zshrc DEBUG] Sourceing Powerlevel10k from $POWERLEVEL10K_PATH"
+ 
+if [[ -f "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme" ]] then 
   source "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme"
+else
+  echo "[.zshrc DEBUG] No .p10k.zsh found to source."
+fi
+
+if [[ -f ~/.p10k.zsh ]]; then
+  source ~/.p10k.zsh
 else
   echo "[.zshrc DEBUG] No .p10k.zsh found to source."
 fi

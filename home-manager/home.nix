@@ -27,7 +27,7 @@ in
     zsh-powerlevel10k
     fzf
     zoxide
-    nerd-fonts.meslo-lg # Use the identified Nerd Font attribute
+    nerd-fonts.meslo-lg 
     vscode
     obsidian
   ];
