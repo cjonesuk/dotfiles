@@ -25,7 +25,7 @@
   networking.hostName = "nix-desktop"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/London";
@@ -129,11 +129,20 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     description = "Chris";
-    packages = with pkgs; [
-       vscode
-       obsidian
-       oh-my-zsh
-    ];
+    shell = pkgs.zsh; # If you manage zsh with home-manager, you might set it here too or let home-manager handle it.
+  };
+
+  # Home Manager integration
+  home-manager = {
+    # This tells home-manager to use the flake's homeConfigurations output
+    useGlobalPkgs = true; # Recommended for flakes
+    useUserPackages = true; # Allows users to install packages with home-manager
+    extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to home-manager modules
+    users.chris = {
+      # Import the home.nix from your home-manager directory
+      # The path is relative to this configuration.nix file
+      imports = [ ../home-manager/home.nix ];
+    };
   };
 
   # Programs
