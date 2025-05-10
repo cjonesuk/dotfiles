@@ -121,6 +121,14 @@
   #   pulse.enable = true;
   # };
 
+  # https://nixos.wiki/wiki/Power_Management
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
