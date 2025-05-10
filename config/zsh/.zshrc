@@ -162,6 +162,12 @@ else
   echo "[.zshrc DEBUG] No .p10k.zsh found to source."
 fi
 
+if [[ -f "${ZSH_PLUGIN_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh" ]]; then
+  source "${ZSH_PLUGIN_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh"
+else
+  echo "[.zshrc DEBUG] No zsh-autosuggestions found to source."
+fi
+
 # Example for fzf configuration (if you use the fzf plugin)
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

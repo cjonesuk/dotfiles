@@ -25,6 +25,7 @@ in
   home.packages = with pkgs; [
     oh-my-zsh
     zsh-powerlevel10k
+    zsh-autosuggestions
     fzf
     zoxide
     nerd-fonts.meslo-lg 
@@ -61,12 +62,14 @@ in
 
   programs.zsh = {
     enable = true; # Sets Zsh as default shell
+
     # Oh My Zsh and Powerlevel10k configuration will be handled by your symlinked .zshrc
     # and .p10k.zsh files.
     # The oh-my-zsh package installed via home.packages provides the framework.
     envExtra = ''
       export ZSH="${pkgs.oh-my-zsh}/share/oh-my-zsh" # Point to the subdirectory
       export POWERLEVEL10K_PATH="${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k" # Point to the subdirectory
+      export ZSH_PLUGIN_AUTOSUGGESTIONS_DIR="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions" # Point to the subdirectory
     '';
   };
 
