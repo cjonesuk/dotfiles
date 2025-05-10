@@ -5,20 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt autocd notify
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/chris/.zshrc'
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -149,7 +136,9 @@ fi
 # This will be created by `p10k configure` and symlinked by Home Manager
 # from your config/zsh/.p10k.zsh file.
 # It's important to source it *after* Oh My Zsh and ZSH_THEME is set.
- 
+
+
+
 if [[ -f "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme" ]] then 
   source "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme"
 else
@@ -162,6 +151,12 @@ else
   echo "[.zshrc DEBUG] No .p10k.zsh found to source."
 fi
 
+if [[ -f "${ZSH_PLUGIN_AUTOCOMPLETE_DIR}/zsh-autocomplete.plugin.zsh" ]]; then
+  source "${ZSH_PLUGIN_AUTOCOMPLETE_DIR}/zsh-autocomplete.plugin.zsh"
+else
+  echo "[.zshrc DEBUG] No zsh-autocomplete found to source."
+fi
+
 if [[ -f "${ZSH_PLUGIN_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh" ]]; then
   source "${ZSH_PLUGIN_AUTOSUGGESTIONS_DIR}/zsh-autosuggestions.zsh"
 else
@@ -172,3 +167,18 @@ fi
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_ALT_C_COMMAND="fd --type d . --hidden --exclude .git"
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd notify
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+# zstyle :compinstall filename '/home/chris/.zshrc'
+
+# autoload -Uz compinit
+# compinit
+# End of lines added by compinstall
