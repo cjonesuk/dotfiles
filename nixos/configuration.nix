@@ -114,12 +114,10 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+     enable = true;
+     pulse.enable = true;
+  };
 
   # https://nixos.wiki/wiki/Power_Management
   systemd.sleep.extraConfig = ''
@@ -166,7 +164,7 @@
     polkitPolicyOwners = [ "chris" ];
   };
   
-  # Neovim
+  # Neovim  
   # https://nixos.wiki/wiki/Neovim
   programs.neovim = {
     enable = true;
