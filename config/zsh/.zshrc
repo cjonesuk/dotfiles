@@ -99,20 +99,13 @@ plugins=(
   # Add other plugins you want here
 )
 
-# This sources Oh My Zsh
-# Make sure Oh My Zsh is installed and $ZSH is set correctly.
-# (Home Manager's oh-my-zsh package should handle this)
+# This sources Oh My Zsh 
 if [ -f "$ZSH/oh-my-zsh.sh" ]; then
   source "$ZSH/oh-my-zsh.sh"
 else
   echo "Error: Oh My Zsh not found at $ZSH. Please check your installation."
 fi
 
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set up your environment variables during the transition period.
-# For example source ~/.bash_profile
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -121,22 +114,21 @@ fi
 #   export EDITOR='nvim' # or 'code -w' for VS Code
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For example:
-# alias zshconfig="nvim ~/.zshrc"
-# alias ohmyzsh="nvim $ZSH"
-# alias hm-switch="home-manager switch --flake ~/.dotfiles/nixos#chris"
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd notify
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+# zstyle :compinstall filename '/home/chris/.zshrc'
 
-# To customize Powerlevel10k prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# This will be created by `p10k configure` and symlinked by Home Manager
-# from your config/zsh/.p10k.zsh file.
-# It's important to source it *after* Oh My Zsh and ZSH_THEME is set.
-
+# autoload -Uz compinit
+# compinit
+# End of lines added by compinstall
 
 
 if [[ -f "${POWERLEVEL10K_PATH}/powerlevel10k.zsh-theme" ]] then 
@@ -163,22 +155,14 @@ else
   echo "[.zshrc DEBUG] No zsh-autosuggestions found to source."
 fi
 
+if [[ -f "${ZSH_PLUGIN_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh" ]]; then
+  source "${ZSH_PLUGIN_SYNTAX_HIGHLIGHTING_DIR}/zsh-syntax-highlighting.zsh"
+else
+  echo "[.zshrc DEBUG] No zsh-syntax-highlighting found to source."
+fi
+
 # Example for fzf configuration (if you use the fzf plugin)
 # export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_ALT_C_COMMAND="fd --type d . --hidden --exclude .git"
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-setopt autocd notify
-unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-# zstyle :compinstall filename '/home/chris/.zshrc'
-
-# autoload -Uz compinit
-# compinit
-# End of lines added by compinstall

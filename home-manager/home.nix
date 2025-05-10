@@ -27,6 +27,7 @@ in
     zsh-powerlevel10k
     zsh-autosuggestions
     zsh-autocomplete
+    zsh-syntax-highlighting
     fzf
     zoxide
     nerd-fonts.meslo-lg 
@@ -72,6 +73,7 @@ in
       export POWERLEVEL10K_PATH="${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k"
       export ZSH_PLUGIN_AUTOSUGGESTIONS_DIR="${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions"
       export ZSH_PLUGIN_AUTOCOMPLETE_DIR="${pkgs.zsh-autocomplete}/share/zsh-autocomplete"
+      export ZSH_PLUGIN_SYNTAX_HIGHLIGHTING_DIR="${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting"
     '';
   };
 
