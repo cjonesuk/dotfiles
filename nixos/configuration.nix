@@ -46,6 +46,10 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -186,6 +190,8 @@
      tree
      lazygit
      gh
+     
+     spotify
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
